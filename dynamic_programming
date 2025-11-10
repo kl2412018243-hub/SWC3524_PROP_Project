@@ -1,0 +1,23 @@
+int n = dist.length, SIZE = 1 << n;
+int[][] dp = new int[SIZE][n];
+int[][] parent = new int[SIZE][n];
+for (int[] row : dp) Arrays.fill(row, Integer.MAX_VALUE / 2);
+for (int[] row : parent) Arrays.fill(row, -1);
+dp[1 << start][start] = 0;
+for (int mask = 0; mask < SIZE; mask++) {
+    if ((mask & (1 << start)) == 0) continue;
+    for (int u = 0; u < n; u++) {
+        if ((mask & (1 << u)) == 0) continue;
+        int curCost = dp[mask][u];
+        if (curCost >= Integer.MAX_VALUE/4) continue;
+        for (int v = 0; v < n; v++) {
+            if ((mask & (1 << v)) != 0) continue;
+            int nxt = mask | (1 << v);
+            int cand = curCost + dist[u][v];
+            if (cand < dp[nxt][v]) {
+                dp[nxt][v] = cand;
+                parent[nxt][v] = u;   // store path for reconstruction
+            }
+        }
+    }
+}
