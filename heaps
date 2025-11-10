@@ -1,0 +1,23 @@
+import java.util.PriorityQueue;
+public class MinHeapExample {
+    public static void main(String[] args) {
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
+        heap.add(15);
+        heap.add(10);
+        heap.add(3);
+        System.out.println("Min value: " + heap.poll());
+    }
+}
+
+import java.util.Collections;
+import java.util.PriorityQueue;
+public class MaxHeapExample {
+    	public static void main(String[] args) {
+       	 PriorityQueue<Integer> heap =
+            	new PriorityQueue<>(Collections.reverseOrder());
+        	heap.add(12);
+       	 heap.add(25);
+        	heap.add(8);
+        	System.out.println("Max value: " + heap.poll());
+    	}
+}
