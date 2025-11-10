@@ -1,0 +1,19 @@
+int n = dist.length;
+boolean[] visited = new boolean[n];
+List<Integer> route = new ArrayList<>();
+int cur = start; visited[cur] = true; route.add(cur);
+int total = 0;
+for (int step = 1; step < n; step++) {
+    int next = -1, best = Integer.MAX_VALUE;
+    for (int j = 0; j < n; j++) {
+        if (!visited[j] && dist[cur][j] < best) {
+            best = dist[cur][j]; next = j;
+        }
+    }
+    visited[next] = true; route.add(next);
+    total += best; cur = next;
+}
+// close tour
+total += dist[cur][start];
+route.add(start);
+
