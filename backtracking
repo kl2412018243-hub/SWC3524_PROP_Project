@@ -1,0 +1,19 @@
+void dfs(int[][] dist, int node, boolean[] used, List<Integer> cur, int cost,
+         int start) {
+    int n = dist.length;
+    if (cur.size() == n) {
+        int total = cost + dist[node][start];  // close tour
+        if (total < bestCost) {
+            bestCost = total;
+            bestRoute = new ArrayList<>(cur);
+        }
+        return;
+    }
+    for (int v = 0; v < n; v++) {
+        if (!used[v]) {
+            used[v] = true; cur.add(v);
+            dfs(dist, v, used, cur, cost + dist[node][v], start);
+            cur.remove(cur.size() - 1); used[v] = false;
+        }
+    }
+}
