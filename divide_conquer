@@ -1,0 +1,16 @@
+// generate all permutations of nodes (except start)
+void permute(List<Integer> a, int l, List<List<Integer>> out) {
+    if (l == a.size()) { out.add(new ArrayList<>(a)); return; }
+    for (int i = l; i < a.size(); i++) {
+        Collections.swap(a, l, i);
+        permute(a, l + 1, out);
+        Collections.swap(a, l, i);
+    }
+}
+// evaluate each permutation as a full tour start -> ... -> start
+int pathCost(List<Integer> route, int[][] dist) {
+    int c = 0;
+    for (int i = 0; i < route.size()-1; i++)
+        c += dist[route.get(i)][route.get(i+1)];
+    return c;
+}
