@@ -1,0 +1,18 @@
+class Node {
+    int key; Node left, right;
+    Node(int k){ key = k; }
+}
+class SplayTreeInsert {
+    Node root;
+    void insert(int key){
+        root = new Node(key);
+        System.out.println("Inserted: " + key);
+    }
+}
+public class SplayTreeInsertDemo {
+    public static void main(String[] args){
+        SplayTreeInsert tree = new SplayTreeInsert();
+        tree.insert(20);
+        tree.insert(10);
+    }
+}
